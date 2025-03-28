@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Image and Description</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-image: url('https://images.pexels.com/photos/23793/rocket-launch-space-discovery.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Set your background image URL here */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background-color: rgb(255, 255, 255); /* Slightly transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .image-content {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bridge-image {
+            border-radius: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .bridge-heading {
+            color: rgb(5, 1, 1);
+            margin: 10px 0;
+        }
+
+        .description-heading {
+            color: #333;
+            margin-bottom: 10px;
+            cursor: pointer; /* Added cursor style for clickable element */
+        }
+
+        .description-text {
+            color: #000000;
+            line-height: 1.6;
+            font-size: 20px;
+            display: block;
+             /* Ensure it's visible by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if predict == "AnnualCrop" %}
+        <div class="section">
+            {% if obj %}
+            <div class="image-content">
+                <img src="{{ obj.image.url }}" alt="Annual Crop Image" class="crop-image">
+                <h2 class="crop-heading">THIS IMAGE FOUNDED IN {{ predict | upper }}</h2>
+            </div>
+            {% endif %}
+            <h2 class="description-heading">Description</h2>
+            <p class="description-text">Annual crops are plants that complete their life cycle—from germination to the production of seeds—within one year, and then die. Monitoring these crops is crucial for ensuring food security, efficient resource use, and sustainable agricultural practices. Satellites equipped with advanced sensors provide invaluable data for this purpose. High-resolution imagery from satellites captures detailed information about crop health, growth stages, and biomass production. This data, combined with remote sensing techniques, allows for the assessment of various parameters such as vegetation indices, soil moisture content, and weather conditions. Satellite imagery helps in detecting stress factors like pests, diseases, and nutrient deficiencies early, enabling timely interventions. Additionally, it facilitates precision farming by allowing farmers to manage their fields more effectively, optimizing input usage such as water, fertilizers, and pesticides. The integration of satellite data with machine learning algorithms further enhances the predictive capabilities, providing insights into yield forecasts and helping to mitigate risks associated with climate variability. Overall, satellite technology plays a pivotal role in modern agriculture by supporting sustainable crop management and ensuring food production resilience.</p>
+        </div>
+        {% elif predict == "Bridge aerial" %}
+        <div class="section">
+            {% if obj %}
+            <div class="image-content">
+                <img src="{{ obj.image.url }}" alt="Bridge Aerial Image" class="bridge-image">
+                <h2 class="bridge-heading">THIS IMAGE FOUNDED IN {{ predict | upper }}</h2>
+            </div>
+            {% endif %}
+            <h2 class="description-heading">Description</h2>
+            <p class="description-text">A bridge aerial, often referred to as an overhead bridge shot, is a captivating aerial photograph or video capturing a bridge from a high vantage point, typically taken using a drone or helicopter. This perspective showcases the architectural elegance and engineering marvel of the bridge, highlighting its structure, length, and the surrounding landscape. It provides a unique view that emphasizes the bridge's connection points, the flow of traffic, and its integration with natural or urban settings. Such images often reveal the symmetry and design intricacies of the bridge, making them visually striking and informative. Aerial bridge shots are widely used in documentaries, promotional materials, and urban planning to illustrate the grandeur and significance of these vital infrastructures.</p>
+        </div>
+        {% elif predict == "Damage" %}
+        <div class="section">
+            {% if obj %}
+            <div class="image-content">
+                <img src="{{ obj.image.url }}" height="300" width="300"><br>
+                <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2>
+            </div>
+            {% endif %}
+            <h2>Description</h2>
+            <p class="description-text" >Description for Damage The satellite imagery has revealed significant damage to the affected area, characterized by a range of destructive impacts visible from the high-resolution images. The damage appears as extensive surface alterations, including substantial alterations to infrastructure and natural landscapes. Urban areas show signs of structural damage, with buildings and roads exhibiting severe disruptions such as cracks, collapses, or partial destruction. In rural areas, there may be visible impacts on agricultural fields, forested regions, or waterways, which could include deforestation, erosion, or sediment displacement.
+
+                The imagery highlights the extent and severity of the damage, providing crucial information for disaster response and recovery efforts. Detailed analysis of these images can help in assessing the full scope of the destruction, guiding resource allocation, and planning for rebuilding and rehabilitation. The visible damage underscores the urgent need for targeted interventions to address the immediate impacts and mitigate further consequences.: </p>
+        </div>
+        {% elif predict == "Forest" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+                <img src="{{ obj.image.url }}" height="300" width="300"><br><br>
+                <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br>
+            </div>
+            {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Forest: A forest is a vast, dense expanse of trees and undergrowth that covers a significant portion of the Earth's surface. It is a complex ecosystem characterized by a rich variety of flora and fauna, where towering trees form a canopy that filters sunlight, creating a diverse range of microhabitats below. Forests play a crucial role in regulating the Earth's climate by absorbing carbon dioxide and producing oxygen. They are also vital for maintaining biodiversity, providing habitat for countless species of plants, animals, and insects. Forests contribute to the water cycle by influencing rainfall patterns and preventing soil erosion through their root systems. The interplay between different layers of vegetation, including the forest floor, understory, and canopy, creates a dynamic environment that supports a myriad of ecological processes and contributes to the overall health of the planet. </p>
+        </div>
+        {% elif predict == "Highway" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+             <img src="{{ obj.image.url }}" height="300" width="300"><br><br>
+             <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br>
+             </div>
+            {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Highway:A highway is a major road designed to facilitate long-distance travel and transportation. It typically features multiple lanes, often separated by a median strip or barriers to manage traffic flow and enhance safety. Highways are built to accommodate high-speed travel and are crucial for connecting cities, regions, and even countries. In a satellite image, a highway appears as a broad, linear structure that stands out due to its well-defined lanes and extensive length. It is usually bordered by land areas that may include urban developments, rural landscapes, or natural features. Highways are engineered with various features such as on-ramps, off-ramps, and interchanges to support efficient traffic movement and access to adjacent roads and destinations. </p>
+        </div>
+        {% elif predict == "Industrial aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+            {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Industrial aerial: An industrial aerial image captures a comprehensive view of a large-scale industrial area from above. This type of imagery provides an expansive perspective of industrial facilities, including factories, warehouses, production lines, and storage yards. The image reveals the spatial layout and organization of industrial operations, highlighting key infrastructure such as buildings, machinery, and transportation networks. By offering a bird's-eye view, industrial aerial images are invaluable for various applications, including site planning, operational analysis, and strategic decision-making. They facilitate the assessment of land usage, monitor changes over time, and support logistical and operational efficiency by providing a clear, detailed overview of the industrial environment.</p>
+        </div>
+        {% elif predict == "Industrial sat" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Industrial satilite:An industrial satellite image is a high-resolution photograph captured from space that provides detailed visual data of industrial facilities and activities on the Earth's surface. These images are acquired by satellites equipped with advanced sensors and cameras, offering insights into various industrial operations, including manufacturing plants, mining sites, oil refineries, and power stations. The imagery can reveal infrastructure layouts, operational status, and environmental impacts, making it a crucial tool for monitoring and managing industrial activities. By analyzing industrial satellite images, stakeholders can assess resource utilization, track production efficiency, identify potential environmental hazards, and ensure compliance with regulatory standards. This remote sensing technology enhances decision-making and strategic planning in industrial sectors by providing a comprehensive and up-to-date view of industrial landscapes from a global perspective. </p>
+        </div>
+        {% elif predict == "Intersection aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Intersection aerial:An aerial image of an intersection provides a bird’s-eye view of the junction where multiple roads or streets converge. This perspective is invaluable for urban planning, traffic management, and infrastructure development. The image typically captures the layout of the intersection, including the alignment of roads, traffic signals, pedestrian crosswalks, and surrounding landmarks. It may also show vehicle movements and congestion patterns, which are crucial for assessing traffic flow and designing efficient traffic management solutions. The clarity and detail in an aerial view allow for precise analysis of road networks, enabling planners and engineers to make informed decisions about improvements or modifications. By examining the intersection from above, stakeholders can better understand the spatial relationships and traffic dynamics that influence the overall functionality and safety of the area. </p>
+        </div>
+        {% elif predict == "Landmark aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Landmark aerial:The landmark aerial image captures a bird’s-eye view of a notable geographical feature or significant structure from an elevated perspective. This type of imagery provides a comprehensive overview of the landmark's layout, surroundings, and its spatial relationship with nearby landmarks. The aerial view often reveals the landmark's scale and prominence, showcasing its architectural details or natural features in a broader context. Whether it’s a historic monument, a towering skyscraper, or a unique natural formation, the aerial perspective offers valuable insights into the landmark’s design, its integration within the landscape, and its impact on the surrounding area. Such images are essential for urban planning, tourism, and historical documentation, offering a detailed and immersive representation of the landmark's significance. </p>
+        </div>
+        {% elif predict == "Park aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Park aerial:The aerial image of the park offers a breathtaking bird’s-eye view of a lush, green landscape that showcases the park’s expansive layout and varied features. At the heart of the image, well-maintained pathways meander through vibrant patches of manicured lawns, guiding visitors through an oasis of natural beauty. The intricate network of trails is bordered by clusters of trees, their dense canopies providing ample shade and enhancing the park's serene ambiance. In various corners of the park, playgrounds, picnic areas, and sports fields are visible, illustrating the park's multifunctional design aimed at accommodating diverse recreational activities. The surrounding greenery, dotted with colorful flower beds and water features, adds to the picturesque charm of the park, creating a tranquil retreat for relaxation and leisure amidst the hustle and bustle of urban life. </p>
+        </div>
+        {% elif predict == "Parking aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Parking aerial: A parking aerial image is a top-down view captured from above, typically using drones or satellite technology. This type of image provides a comprehensive perspective of a parking area, showcasing the layout and organization of parking spaces, access points, and surrounding structures. It can reveal the overall capacity of the parking facility, identify the distribution of parking spots, and highlight any potential congestion areas or inefficiencies. Parking aerial images are valuable for urban planning, traffic management, and optimizing the design and functionality of parking facilities. They can also be used for monitoring compliance with parking regulations and assessing the impact of changes to the parking infrastructure. </p>
+        </div>
+        {% elif predict == "PermanentCrop" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for PermanentCrop : Permanent crop detection refers to the identification and classification of crops that are cultivated year after year in the same location using satellite imagery. These crops, such as fruit trees, vines, and certain types of nuts, are known for their long-term cultivation and require specific monitoring to manage growth patterns and health over multiple seasons. Satellite imagery plays a crucial role in this process by providing high-resolution, up-to-date visuals of agricultural areas. Advanced image processing and machine learning techniques are employed to analyze these images, allowing for precise mapping and monitoring of permanent crop areas. This information helps in assessing crop health, estimating yields, and making informed decisions about agricultural practices. By continuously monitoring these crops from space, farmers and agricultural experts can optimize resource use, predict potential issues, and improve overall productivity. </p>
+        </div>
+        {% elif predict == "Playground aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Playground aerial: The aerial image of the playground reveals a well-organized and vibrant recreational area designed for children's enjoyment and engagement. From the bird's-eye view, the playground is laid out with various play structures and equipment that cater to different age groups and interests. Brightly colored swings, slides, and climbing frames are prominently visible, creating an inviting and dynamic environment. The playground is often surrounded by grassy areas, providing ample space for open play and relaxation. Additionally, safety features such as soft ground coverings are evident, ensuring a secure play experience. This aerial perspective captures the overall layout and accessibility of the playground, highlighting its role as a central hub for outdoor activities and community interaction.</p>
+        </div>
+        {% elif predict == "Residential aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Residential aerial:A residential aerial image typically refers to an overhead view captured from an aerial perspective, such as from a drone or satellite, focusing on residential areas. This type of image provides a comprehensive visual representation of residential neighborhoods, showcasing the layout and organization of houses, streets, and surrounding landscapes. The aerial view can reveal patterns in housing density, property sizes, and neighborhood design, offering valuable insights for urban planning, real estate analysis, and environmental monitoring. By capturing a broad and detailed perspective, residential aerial images help in assessing the spatial relationships within residential areas, identifying land use patterns, and supporting various decision-making processes related to community development and infrastructure planning. </p>
+        </div>
+        {% elif predict == "Residential" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Residential: A residential satellite image captures detailed aerial views of suburban and urban housing areas from space. This type of imagery provides a comprehensive perspective of residential neighborhoods, showcasing individual homes, streets, and surrounding landscapes. In these images, you can observe the layout and density of housing, as well as the infrastructure such as roads, parks, and green spaces. The clarity and resolution of residential satellite images enable the identification of property boundaries, architectural styles, and even landscaping features. These images are invaluable for various applications, including urban planning, real estate assessments, and disaster management. By analyzing residential satellite imagery, one can gain insights into neighborhood development patterns, housing conditions, and the overall spatial organization of residential areas.</p>
+        </div>
+        {% elif predict == "River" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for River :The satellite image provides a detailed and expansive view of a river meandering through the landscape. The river, characterized by its serpentine flow, appears as a prominent blue ribbon snaking across the terrain. Its path is defined by the contrasting colors of the surrounding land, with lush green vegetation often lining its banks, indicating fertile and well-watered areas. The image showcases various features such as meanders, oxbow lakes, and possibly delta formations, illustrating the river's dynamic and ever-changing nature. The surrounding landscape, including forests, fields, and urban areas, can be observed in relation to the river's course, highlighting its influence on local ecosystems and human activities. The satellite imagery captures the river's scale and its impact on the geography, providing valuable insights into the natural and anthropogenic processes shaping the region. </p>
+        </div>
+        {% elif predict == "SeaLake" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content"></div>
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for SeaLake: The SeaLake satellite is a cutting-edge Earth observation satellite designed to provide high-resolution imagery and data for monitoring and analyzing bodies of water, including seas and lakes. Equipped with advanced imaging sensors, the SeaLake satellite captures detailed visual and infrared images, which are instrumental in assessing water quality, tracking changes in water levels, and identifying environmental phenomena such as algal blooms or sedimentation. Its capabilities extend to monitoring coastal regions, tracking ice formations, and supporting disaster management efforts by providing real-time information on flood and drought conditions. The satellite's data is invaluable for researchers, environmentalists, and policymakers in understanding and addressing the dynamic and critical aspects of aquatic ecosystems. By offering a comprehensive view of Earth's water bodies, the SeaLake satellite plays a crucial role in advancing our knowledge and management of water resources. </p>
+        </div>
+        {% elif predict == "Shipsnet" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Shipsnet : Shipsnet is a cutting-edge satellite system designed for maritime surveillance and tracking. This advanced satellite network provides real-time imagery and data collection for ships at sea, enabling precise monitoring of their locations and movements. Utilizing sophisticated imaging technology, Shipsnet captures high-resolution satellite images, offering detailed views of maritime traffic and oceanic conditions. This system is instrumental in ensuring maritime safety, optimizing shipping routes, and supporting environmental monitoring. With its comprehensive coverage and enhanced detection capabilities, Shipsnet plays a crucial role in modern maritime operations, contributing to efficient navigation, security, and research in the vast and dynamic marine environment.</p>
+        </div>
+        {% elif predict == "Stadium aerial" %}
+        <div class="section mt-4">
+            {% if obj %}
+            <div class="image-content">
+            <center>  <br><br><img src="{{ obj.image.url }}" height="300" width="300"><br><br></center>
+            <center> <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2><br> </center>
+            </div>
+                {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Stadium aerial: The aerial image of the stadium offers a captivating bird’s-eye view, showcasing the expansive layout and architectural grandeur of the venue. From this elevated perspective, the stadium's intricate design elements become evident, including the symmetrical seating arrangements, the meticulously maintained playing field, and the surrounding infrastructure. The vast expanse of the seating areas is highlighted, with clearly defined sections and the stands forming a semi-circular or oval pattern that emphasizes the stadium's scale. The image also captures the surrounding areas, including parking lots, adjacent facilities, and the urban or natural landscape beyond the stadium’s boundaries. This comprehensive view provides a clear understanding of the stadium’s capacity, structural design, and its integration within the broader environment, offering a visual narrative of both its functional and aesthetic aspects. </p>
+        </div>
+        {% elif predict == "Waterbodies" %}
+        <div class="section">
+            {% if obj %}
+            <div class="image-content">
+                <img src="{{ obj.image.url }}" height="300" width="300">
+                <h2 style="color: rgb(5, 1, 1);">THIS IMAGE FOUNDED IN {{predict | upper}}<h2>
+            </div>
+            {% endif %}
+            <h2>Description</h2>
+            <p class="description-text">Description for Waterbodies : Satellite imagery offers a comprehensive and high-resolution view of waterbodies across the Earth's surface, providing critical insights into their size, distribution, and environmental context. These images reveal diverse types of waterbodies, including lakes, rivers, reservoirs, and wetlands, showcasing their varying sizes and shapes. The clarity of satellite imagery allows for the detection of both large, expansive waterbodies and smaller, less prominent ones, capturing detailed features such as shorelines, tributaries, and surrounding vegetation. By analyzing these images, researchers and environmentalists can monitor changes in waterbody levels, assess the health of aquatic ecosystems, and identify potential impacts from human activities or natural events. Satellite data plays a crucial role in water resource management, disaster response, and environmental conservation, offering a valuable tool for understanding and preserving the planet's water resources. </p>
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+</div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const descriptionHeading = document.querySelector('.description-heading');
+            const descriptionText = document.querySelector('.description-text');
+            
+            descriptionHeading.addEventListener('click', function() {
+                if (descriptionText.style.display === 'none' || descriptionText.style.display === '') {
+                    descriptionText.style.display = 'block';
+                    descriptionHeading.textContent = 'Hide Description';
+                } else {
+                    descriptionText.style.display = 'none';
+                    descriptionHeading.textContent = 'Show Description';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

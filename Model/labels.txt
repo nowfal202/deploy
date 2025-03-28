@@ -1,0 +1,20 @@
+0 AnnualCrop
+1 Bridge aerial
+2 damage
+3 Forest
+4 Highway
+5 Industrial aerial
+6 Industrial sat
+7 Intersection aerial
+8 Landmark aerial
+9 Park aerial
+10 Parking aerial
+11 PermanentCrop
+12 Playground aerial
+13 Residential aerial
+14 Residential 
+15 River
+16 SeaLake
+17 shipsnet
+18 Stadium aerial
+19 waterbodies

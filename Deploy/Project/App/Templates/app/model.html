@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Implementation</title>
+    <style>
+        /* Global Styles */
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            position: relative;
+        }
+
+        /* Body Background Gradient */
+        body {
+        /* Set the background image */
+        background-image: url("/static/images/s7.jpg");
+        /* Ensure the background image covers the entire screen */
+        background-size: cover;
+        /* Center the background image */
+        background-position: center;
+        /* Fix the background image */
+        background-attachment: fixed;
+    }
+
+
+        /* Container Styles */
+        .container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Box Styles */
+        .box {
+            max-width: 600px;
+            width: 100%;
+            /* Set the background image */
+            background-image: url("/static/images/bag.jpg");
+            /* Ensure the background image covers the entire screen */
+            background-size: cover;
+            /* Center the background image */
+            background-position: center;
+            /* Fix the background image */
+            background-attachment: fixed;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.247);
+            overflow-y: auto; /* Add overflow-y for vertical scroll */
+            max-height: 80vh; /* Set a maximum height for scrolling */
+        }
+
+        /* Heading Styles */
+        h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #ffffff;
+        }
+
+        h1:after {
+            content: "";
+            width: 140px;
+            height: 4px;
+            background-image: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0 auto;
+            border-radius: 6px;
+        }
+
+        /* Form Styles */
+        form {
+            margin-top: 20px;
+        }
+
+        /* File Upload Styles */
+        .kwt-file__drop-area {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            transition: 0.3s;
+            margin-top: 20px;
+        }
+
+        .kwt-file__drop-area.is-active {
+            background-color: #d1def0;
+        }
+
+        .kwt-file__choose-file {
+            flex-shrink: 0;
+            background-color: #1d3557;
+            border-radius: 100%;
+            margin-right: 10px;
+            color: #fff;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Image Styles */
+        .img {
+            text-align: center;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .img img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .img img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Button Styles */
+        .bb {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .but {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .but:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box">
+            <a href="/" style="color: #ffffff; font-size: 20px;text-decoration: solid;"><b>HOME</b></a>
+            <h1>Model Implementation</h1>
+            <h3>Drop File Upload</h3>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <div class="bb"><button class="but" type="submit">SUBMIT</button></div><br><br>
+            </form>
+
+            {% if obj %}
+                <code style="font-size: 20px;">{{ output | upper }}</code><br><br><br>
+
+                <div class="img">
+                    <img src="{{ obj.image.url }}" alt="No image found">
+                </div>
+                <div class="img">
+                    <img src="{{ image_uri }}" alt="No image found">
+                </div>
+            {% endif %}
+        </div>
+        
+    </div>
+</body>
+</html>
+
+    <!-- <h3 style="color: black;font-size: 38px;"> {{output}}</h3><br>
+    <h4 style="color: black;font-size: 20px;">ORIGINAL_IMAGE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MASK IMAGE</h4>
+    
+    <img src={{ image_uri }} height="200" width="200"> -->
